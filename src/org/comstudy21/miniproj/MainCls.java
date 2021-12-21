@@ -1,6 +1,7 @@
 package org.comstudy21.miniproj;
 
 import java.util.Scanner;
+
 import static java.lang.System.out;
 
 class Student {
@@ -8,7 +9,7 @@ class Student {
 	public String name; // 이름
 	public int kor, eng, mat;
 	public int sum; // 국영수의 총점
-	public double avg; // 국영수의 총점의 평균
+	public double avg; // 국영수 총점의 평균
 	public String grade; // 학점
 	public int rank; // 등수
 	
@@ -28,14 +29,14 @@ class Student {
 	}
 	
 	// 객체를 사용하면 toString()이 자동 호출 된다.
+	
 	@Override
 	public String toString() {
 		return no + "\t" + name + "\t" + kor + "\t" + eng + "\t" + mat + "\t"
 				+ sum + "\t" + avg + "\t" + grade + "\t" + rank;
 	}
-
 }
-// Student st1 = new student();
+// Student st1 = new Student();
 // st1.name = "홍길동"
 // Student st2 = new Student(1, "김길동", 60, 70, 80);
 
@@ -44,8 +45,11 @@ public class MainCls {
 	
 	public static final int MAX = 100;
 	static Student[] sArr = new Student[MAX];
-	static int top = 0; // 스택 자료구조처럼.
+	static int top = 0; // 스텍 자료구조처럼.
 	static int sequence = 1;
+	
+	
+	
 	
 	// static 초기화 블럭
 	static {
@@ -54,18 +58,17 @@ public class MainCls {
 		sArr[top++] = new Student(sequence++, "PARK", 90, 100, 95);
 	}
 	
+	
+	
 	public static int menu() {
 		int no = 0;
-		
-		
 		out.println("1.입력 2.출력 3.검색 4.수정 5.삭제 6.종료");
-		out.print("선택 >> ");
+		out.print("선택>> ");
 		no = scan.nextInt();
 		// 예외처리 및 유효성 검사
-		
 		return no;
-		
 	}
+	
 	public static void run() {
 		switch(menu()) {
 		case 1 : input(); break;
@@ -76,30 +79,33 @@ public class MainCls {
 		case 6 : end(); break;
 		default : out.println("--- 해당 사항 없습니다! ---");
 		}
-		out.println("----------------------------------");
+		System.out.println("------------------------------------");
 	}
-	
 	
 	private static void end() {
-		out.println("::::: END :::::");
-		out.println("프로그램 종료!");
-		out.println("수고하셨습니다!");
+		System.out.println("::::: END :::::");
+		System.out.println("프로그램 종료!");
+		System.out.println("수고하셨습니다!");
 		System.exit(0);
 	}
+
 	private static void delete() {
-		out.println("::::: DELETE :::::");
+		System.out.println("::::: DELETE :::::");
 		// 이름으로 검색 후 삭제
 	}
+
 	private static void modify() {
-		out.println("::::: MODIFY :::::");
+		System.out.println("::::: MODIFY :::::");
 		// 이름으로 검색 후 수정
 	}
+
 	private static void search() {
-		out.println("::::: SEARCH :::::");
+		System.out.println("::::: SEARCH :::::");
 		// 이름으로 검색
 	}
+
 	private static void output() {
-		out.println("::::::::::::::::::::::::::::: OUTPUT :::::::::::::::::::::::::::::");
+		System.out.println(":::::::::::::::::::::::::::: OUTPUT ::::::::::::::::::::::::::::");
 		// 배열의 목록 출력
 		// 번호, 성명, 국어, 영어, 수학, 총점, 평균, 학점, 등수, 등수를 기준으로 정렬
 		for(Student std : sArr) {
@@ -107,12 +113,55 @@ public class MainCls {
 			out.println(std);
 		}
 	}
+	
+	
+	
 	private static void input() {
-		out.println("::::: INPUT :::::");
-		// 성명, 국어, 영어, 수학을 배열에 입력 받는다.
-		// 입력 받은 국영수 점수의 총점과 평균, 평균의 학점
+		System.out.println("::::: INPUT :::::");
+		// 성명, 국어, 영어, 수학를 배열에 입력 받는다.
+		// 입력 받은 국영수 점수의 총점과 평균, 평균의 학점, 
 		// 입력 된 학생의 등수가 셋팅 된다.
+		
+		int i;
+		String[] name;
+		int[] kor;
+		int[] eng;
+		int[] mat;
+		
+		
+		
+		do {
+			out.println("학생 수를 입력해 주세요 >>> ");
+			i = scan.nextInt();
+		}while(!(i>=1 && i<=10));
+		
+		name = new String[i];
+		kor = new int[i];
+		eng = new int[i];
+		mat = new int[i];
+		
+		// 입력
+		for(int j=0;j<i;j++) {
+			out.printf("학생 이름을 입력해주세요.[%d번째]",(j+1));
+			name[j] = scan.next();
+			out.printf("국어 점수를 입력해주세요.[%d번째]",(j+1));
+			kor[j] = scan.nextInt();
+			out.printf("영어 점수를 입력해주세요.[%d번째]",(j+1));
+			eng[j] = scan.nextInt();
+			out.printf("수학 점수를 입력해주세요.[%d번째]",(j+1));
+			mat[j] = scan.nextInt();
+			
+		}
+		
+		// 출력
+		for(int j=0;j<i;j++) {
+		out.println(name[i]);
+		out.println(kor[i]);
+		out.println(eng[i]);
+		out.println(mat[i]);
 	}
+	}
+
 	public static void main(String[] args) {
 		out.println("::::: 성적 출력 프로그램 :::::");
 		while(true) {
